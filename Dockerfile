@@ -19,13 +19,11 @@ RUN apk --no-cache add --virtual gdbgui-runtime-dependencies \
 COPY --from=build /opt/gdbgui/ /opt/gdbgui/
 
 ENV PATH=${PATH}:/opt/gdbgui/bin/ \
-    PYTHONPATH=/usr/lib/python3.8/site-packages/:/opt/gdbgui/lib/python3.8/site-packages/
-
-ENV PORT=5555
+    PYTHONPATH=/usr/lib/python3.8/site-packages/:/opt/gdbgui/lib/python3.8/site-packages/ \
+    PORT=5555
 
 EXPOSE ${PORT}
 
 WORKDIR /workspace
-
 CMD gdbgui -r -n --port ${PORT}
 
